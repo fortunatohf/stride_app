@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+.env
+staticfiles/
+.venv/
+# Node / Expo
+node_modules/
+.expo/
+dist/
+mobile/ios/
+mobile/android/
+*.log
+.DS_Store
