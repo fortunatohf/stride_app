@@ -1,0 +1,33 @@
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    environment:
+      POSTGRES_USER: stryde
+      POSTGRES_PASSWORD: stryde
+      POSTGRES_DB: stryde
+    ports: ["5432:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+  redis:
+    image: redis:7-alpine
+    ports: ["6379:6379"]
+  api:
+    build: .
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    env_file: .env
+    environment:
+      DATABASE_URL: postgis://stryde:stryde@db:5432/stryde
+      REDIS_URL: redis://redis:6379/0
+    ports: ["8000:8000"]
+    volumes: [.:/app]
+    depends_on: [db, redis]
+  worker:
+    build: .
+    command: celery -A config worker -B -l info
+    env_file: .env
+    environment:
+      DATABASE_URL: postgis://stryde:stryde@db:5432/stryde
+      REDIS_URL: redis://redis:6379/0
+    volumes: [.:/app]
+    depends_on: [db, redis]
+volumes:
+  pgdata:

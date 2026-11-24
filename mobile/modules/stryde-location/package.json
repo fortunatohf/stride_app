@@ -1,0 +1,7 @@
+{
+  "name": "stryde-location",
+  "version": "0.1.0",
+  "description": "Native GPS run recorder for STRYDE (Core Location / Fused Location foreground service)",
+  "main": "index.ts",
+  "private": true
+}

@@ -1,0 +1,5 @@
+{
+  "platforms": ["apple", "android"],
+  "apple": { "modules": ["StrydeLocationModule"] },
+  "android": { "modules": ["expo.modules.strydelocation.StrydeLocationModule"] }
+}
