@@ -1,0 +1,93 @@
+{
+  "expo": {
+    "name": "STRYDE",
+    "slug": "stryde",
+    "scheme": "stryde",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "ios": {
+      "bundleIdentifier": "com.stryde.app",
+      "supportsTablet": false,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "STRYDE records your route and time while you run.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "STRYDE keeps recording your run when the screen is locked or you switch apps.",
+        "NSMotionUsageDescription": "STRYDE uses motion data to pause your run when you stop.",
+        "UIBackgroundModes": [
+          "location",
+          "remote-notification"
+        ]
+      }
+    },
+    "android": {
+      "package": "com.stryde.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#0B0C0F",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION",
+        "FOREGROUND_SERVICE",
+        "FOREGROUND_SERVICE_LOCATION",
+        "POST_NOTIFICATIONS",
+        "android.permission.health.READ_EXERCISE",
+        "android.permission.health.READ_EXERCISE_ROUTES",
+        "android.permission.health.READ_HEART_RATE"
+      ]
+    },
+    "plugins": [
+      "expo-router",
+      "expo-sqlite",
+      "expo-secure-store",
+      [
+        "expo-location",
+        {
+          "isIosBackgroundLocationEnabled": true,
+          "isAndroidBackgroundLocationEnabled": true,
+          "isAndroidForegroundServiceEnabled": true
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "color": "#D7FF3A"
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "minSdkVersion": 26
+          }
+        }
+      ],
+      [
+        "@rnmapbox/maps",
+        {
+          "RNMapboxMapsImpl": "mapbox"
+        }
+      ],
+      [
+        "@kingstinct/react-native-healthkit",
+        {
+          "NSHealthShareUsageDescription": "STRYDE reads your running workouts and their routes so watch runs can count on STRYDE routes.",
+          "NSHealthUpdateUsageDescription": false,
+          "background": false
+        }
+      ],
+      "react-native-health-connect"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {}
+    }
+  }
+}
